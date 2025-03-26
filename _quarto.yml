@@ -16,8 +16,6 @@ website:
         contents:
           - em-height.qmd
           - em-categorical.qmd
-          - loglinear-LCA.qmd
-          - local-dependence.qmd
           - clustering-distance.qmd
       - section: "Assignments"
         contents:

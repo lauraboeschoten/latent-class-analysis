@@ -1,0 +1,41 @@
+name: Build and Deploy Quarto Site
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake gcc-fortran
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install Dependencies
+        run: Rscript -e 'install.packages(c("remotes", "MASS", "tidyverse", "flexmix", "tidyverse", "poLCA.extras", "broom", "tidyverse", "broom", "haven", "poLCA", "BayesLCA", "effects", "glmnet", "ggdendro", "fpc", "patchwork", "mclust"))'
+
+      - name: Install Dependencies
+        run: Rscript -e 'remotes::install_github("daob/poLCA.extras")'
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Build quarto site
+        run: quarto render
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
