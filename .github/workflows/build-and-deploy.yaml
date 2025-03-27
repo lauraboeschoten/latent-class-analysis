@@ -22,7 +22,6 @@ jobs:
             remotes
             tidyverse
             flexmix
-            broom
             haven
             BayesLCA
             effects
