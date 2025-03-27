@@ -35,6 +35,9 @@ jobs:
             patchwork
             mclust
             poLCA
+
+      - name: Install poLCA.extras
+        run: Rscript -e 'remotes::install_github("daob/poLCA.extras")'
       
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
