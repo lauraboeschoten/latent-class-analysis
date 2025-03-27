@@ -18,17 +18,12 @@ jobs:
         with:
           cache-version: 2
           packages: |
-            remotes
             MASS
+            remotes
             tidyverse
             flexmix
-            tidyverse
-            poLCA.extras
-            broom
-            tidyverse
             broom
             haven
-            poLCA
             BayesLCA
             effects
             glmnet
@@ -36,6 +31,7 @@ jobs:
             fpc
             patchwork
             mclust
+            poLCA
       
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
